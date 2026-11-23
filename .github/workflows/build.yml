@@ -11,9 +11,10 @@ jobs:
           cp index.html app/www/index.html
           cd app
           cordova platform add ios
-          cordova build ios --device -- CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+          cordova prepare ios
+          xcodebuild -workspace platforms/ios/Ninyvia.xcworkspace -scheme Ninyvia -configuration Release -sdk iphoneos -derivedDataPath build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
           mkdir -p ../Payload
-          cp -r platforms/ios/build/device/Ninyvia.app ../Payload/
+          cp -r build/Build/Products/Release-iphoneos/Ninyvia.app ../Payload/
           cd ..
           zip -r Ninyvia.ipa Payload
       - uses: actions/upload-artifact@v4
