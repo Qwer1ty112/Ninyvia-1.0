@@ -2,7 +2,7 @@ name: Build IPA
 on: [workflow_dispatch]
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: macos-14
     steps:
       - uses: actions/checkout@v4
       - run: |
@@ -11,7 +11,7 @@ jobs:
           cp index.html app/www/index.html
           cd app
           cordova platform add ios
-          cordova build ios --device -- --buildFlag="-UseModernBuildSystem=0" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+          cordova build ios --device -- CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
           mkdir -p ../Payload
           cp -r platforms/ios/build/device/Ninyvia.app ../Payload/
           cd ..
