@@ -1,20 +1,22 @@
-  - name: Устанавливаем Cordova и создаём проект iOS
-    run: |
-      npm install -g cordova
-      cordova create app com.qwer1ty112.ninyvia Ninyvia
-      cp index.html app/www/index.html
-      cd app
-      cordova platform add ios
-      cordova build ios --device -- --buildFlag="-UseModernBuildSystem=0" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
-
-  - name: Упаковываем в универсальный IPA
-    run: |
-      mkdir -p Payload
-      cp -r app/platforms/ios/build/device/Ninyvia.app Payload/
-      zip -r Ninyvia.ipa Payload
-
-  - name: Сохраняем готовый файл
-    uses: actions/upload-artifact@v4
-    with:
-      name: Ninyvia-Universal-IPA
-      path: Ninyvia.ipa
+name: Build IPA
+on: [workflow_dispatch]
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          npm install -g cordova
+          cordova create app com.qwer1ty112.ninyvia Ninyvia
+          cp index.html app/www/index.html
+          cd app
+          cordova platform add ios
+          cordova build ios --device -- --buildFlag="-UseModernBuildSystem=0" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+          mkdir -p ../Payload
+          cp -r platforms/ios/build/device/Ninyvia.app ../Payload/
+          cd ..
+          zip -r Ninyvia.ipa Payload
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Ninyvia-IPA
+          path: Ninyvia.ipa
