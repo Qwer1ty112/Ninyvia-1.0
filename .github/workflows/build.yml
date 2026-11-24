@@ -1,64 +1,12 @@
-dependencies = ();
-name = Ninyvia;
-productName = Ninyvia;
-productReference = 04;
-productType = "com.apple.product-type.application";
-};
-13 /* Build configuration list for PBXNativeTarget / = {
-isa = XCConfigurationList;
-buildConfigurations = (14);
-defaultConfigurationIsVisible = 0;
-defaultConfigurationName = Release;
-};
-14 / Release / = {
-isa = XCBuildConfiguration;
-buildSettings = {
-GENERATE_INFOPLIST_FILE = NO;
-INFOPLIST_FILE = NinyviaApp/Info.plist;
-IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-PRODUCT_BUNDLE_IDENTIFIER = com.qwer1ty112.ninyvia;
-PRODUCT_NAME = Ninyvia;
-SDKROOT = iphoneos;
-SWIFT_VERSION = 5.0;
-TARGETED_DEVICE_FAMILY = "1,2";
-};
-name = Release;
-};
-15 / Build configuration list for PBXProject / = {
-isa = XCConfigurationList;
-buildConfigurations = (16);
-defaultConfigurationIsVisible = 0;
-defaultConfigurationName = Release;
-};
-16 / Release / = {
-isa = XCBuildConfiguration;
-buildSettings = {
-SDKROOT = iphoneos;
-};
-name = Release;
-};
-17 / Project object */ = {
-isa = PBXProject;
-buildConfigurationList = 15;
-compatibilityVersion = "Xcode 14.0";
-developmentRegion = en;
-hasScannedForEncodings = 0;
-knownRegions = (en, Base);
-mainGroup = 11;
-productRefGroup = 10;
-projectDirPath = "";
-projectRoot = "";
-targets = (12);
-};
-};
-rootObject = 17;
-}
-EOF
-  xcodebuild -project NinyviaApp/NinyviaApp.xcodeproj -target Ninyvia -configuration Release -sdk iphoneos -derivedDataPath build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
-  mkdir -p Payload
-  cp -r build/Build/Products/Release-iphoneos/Ninyvia.app Payload/
-  zip -r Ninyvia.ipa Payload
-uses: actions/upload-artifact@v4
-with:
-name: Ninyvia-IPA
-path: Ninyvia.ipa
+name: Build IPA
+on: [workflow_dispatch]
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash build.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Ninyvia-IPA
+          path: Ninyvia.ipa
