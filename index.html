@@ -1,8 +1,40 @@
-0<br><b>Packages:</b> 4 (dpkg)<br><b>Shell:</b> zsh 5.9<br><b>Terminal:</b> NewTerm<br><b>CPU:</b> Apple A13 Bionic<br><b>Memory:</b> 2.67 GiB / 3.79 GiB</div></div>`;
-function go(){lg.innerHTML+="<br>[+] Exploiting kernel...<br>[+] Mounting virtual /var/jb...";setTimeout(()=>{jb.style.display="none";rs.style.display="flex";},800);setTimeout(()=>{rs.style.display="none";os.style.display="flex";},2300);}
-function op(t,b){wt.innerText=t;wb.innerText=b;bar.style.display="none";win.style.display="flex";}
-function term(){wt.innerText="NewTerm3";wb.innerHTML="mobile@iPhone11 ~ % neofetch"+NF;bar.style.display="flex";win.style.display="flex";}
-function run(){let v=document.getElementById("in").value.trim().toLowerCase();document.getElementById("in").value="";wb.innerHTML+="<br>mobile@iPhone11 ~ % "+v+(v=="neofetch"?NF:v=="clear"?"":"<br>zsh: ok");if(v=="clear")wb.innerHTML="";}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JB</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:sans-serif}
+body{background:#0b0c10;color:#fff;height:100vh}
+#jb{padding:20px;max-width:360px;margin:40px auto;background:#161821;border-radius:16px;text-align:center}
+.log{background:#000;color:#30d158;font-family:monospace;font-size:12px;height:120px;padding:10px;border-radius:10px;text-align:left;margin:12px 0}
+button{width:100%;padding:12px;border:none;border-radius:12px;font-weight:700;background:#00f2fe;color:#000}
+#rs{display:none;height:100vh;background:#000;justify-content:center;align-items:center}
+#os{display:none;height:100vh;background:linear-gradient(135deg,#1d2b64,#f8cdda);padding:20px;flex-direction:column;justify-content:space-between}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;text-align:center;font-size:11px}
+.ic{width:50px;height:50px;margin:0 auto 4px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;background:#222}
+#win{display:none;position:fixed;inset:10px;background:#000;border-radius:16px;padding:12px;flex-direction:column;justify-content:space-between;border:1px solid #333}
+</style>
+</head>
+<body>
+<div id="jb"><h2>Dopamine JB</h2><div class="log" id="lg">[*] Ready...</div><button onclick="go()">Jailbreak</button></div>
+<div id="rs">Respringing...</div>
+<div id="os">
+<div class="grid">
+<div onclick="op('Sileo','Repos: Havoc, Chariz')"><div class="ic" style="background:#00c6ff">📦</div>Sileo</div>
+<div onclick="op('Zebra','Zebra 1.1.36 ready')"><div class="ic">🦓</div>Zebra</div>
+<div onclick="op('Filza','/var/jb/Library')"><div class="ic" style="background:#ffd60a">📁</div>Filza</div>
+<div onclick="tm()"><div class="ic">💻</div>NewTerm</div>
+</div>
+<button style="background:#ff453a;color:#fff" onclick="location.reload()">Reboot</button>
+</div>
+<div id="win"><div id="wb" style="font-family:monospace;font-size:11px;overflow:auto"></div><button onclick="win.style.display='none'">Home</button></div>
+<script>
+const NF=`<pre style="line-height:1.1"><span style="color:#61bb46">   .:'\n :'__\n.'\`__\`-\`.</span>\n<span style="color:#fdb827">:____.-'\n:______:</span>\n<span style="color:#f5821f"> :_____ \`;</span>\n<span style="color:#e03a3e">  \`.__.-'</span></pre><b>mobile@iPhone11</b><br>OS: iOS 15.4.1<br>Host: iPhone 11<br>CPU: Apple A13<br>RAM: 2.67/3.79G`;
+function go(){lg.innerHTML+="<br>[+] Mounting /var/jb";setTimeout(()=>{jb.style.display="none";rs.style.display="flex"},600);setTimeout(()=>{rs.style.display="none";os.style.display="flex"},1600)}
+function op(t,b){wb.innerHTML="<h3>"+t+"</h3><br>"+b;win.style.display="flex"}
+function tm(){wb.innerHTML="mobile@iPhone11 % neofetch"+NF;win.style.display="flex"}
 </script>
 </body>
 </html>
